@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000', // Fallback to localhost
 });
 
 // Add a request interceptor to include the token in all requests
@@ -17,35 +17,19 @@ api.interceptors.request.use(
 );
 
 const apiService = {
-  // Courses
-  fetchCourses: () => api.get('/api/courses'),
-  createCourse: (courseData) => api.post('/api/courses', courseData),
-  updateCourse: (courseId, courseData) => api.patch(`/api/courses/${courseId}`, courseData),
-  deleteCourse: (courseId) => api.delete(`/api/courses/${courseId}`),
-  enrollInCourse: (courseId) => api.post(`/api/courses/${courseId}/enroll`),
-  getEnrolledStudents: (courseId) => api.get(`/api/courses/${courseId}/students`),
+  // Auth
+  login: (userData) => api.post('/api/auth/login', userData),
+  register: (userData) => api.post('/api/auth/register', userData),
+  logout: () => api.post('/api/auth/logout'),
+  fetchUser: () => api.get('/api/users/profile'),
 
-  // Assignments
-  fetchAssignments: () => api.get('/api/assignments'),
-  createAssignment: (assignmentData) => api.post('/api/assignments', assignmentData),
-  updateAssignment: (assignmentId, assignmentData) => api.patch(`/api/assignments/${assignmentId}`, assignmentData),
-  deleteAssignment: (assignmentId) => api.delete(`/api/assignments/${assignmentId}`),
-  getAssignmentsForCourse: (courseId) => api.get(`/api/assignments/course/${courseId}`),
-
-  // Submissions
-  fetchSubmissions: () => api.get('/api/submissions'),
-  submitAssignment: (submissionData) => api.post('/api/submissions', submissionData),
-  gradeSubmission: (submissionId, gradeData) => api.patch(`/api/submissions/${submissionId}/grade`, gradeData),
-  getSubmissionsForAssignment: (assignmentId) => api.get(`/api/submissions/assignment/${assignmentId}`),
-  getSubmissionsForStudent: (studentId) => api.get(`/api/submissions/student/${studentId}`),
-
-  // Analytics
-  getCourseCompletionRates: () => api.get('/api/analytics/course-completion'),
-  getAverageGradesPerCourse: () => api.get('/api/analytics/average-grades'),
-  getStudentsPerTeacher: () => api.get('/api/analytics/students-per-teacher'),
-  getAssignmentSubmissionRate: () => api.get('/api/analytics/assignment-submission-rate'),
-  getTopPerformingStudents: () => api.get('/api/analytics/top-students'),
-  getCoursePopularity: () => api.get('/api/analytics/course-popularity'),
+  // Quizzes
+  createQuiz: (quizData) => api.post('/api/quizzes', quizData),
+  getQuizzes: (page = 1, limit = 10) => api.get(`/api/quizzes?page=${page}&limit=${limit}`),
+  getQuizById: (quizId) => api.get(`/api/quizzes/${quizId}`),
+  updateQuiz: (quizId, quizData) => api.put(`/api/quizzes/${quizId}`, quizData),
+  deleteQuiz: (quizId) => api.delete(`/api/quizzes/${quizId}`),
+  submitQuiz: (submissionData) => api.post('/api/quizzes/submit', submissionData),
 };
 
 export default apiService;

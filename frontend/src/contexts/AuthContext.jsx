@@ -1,28 +1,38 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { login, register } from '../services/api';
+import apiService from '../services/api';
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchUser();
-    } else {
+  const login = async (userData) => {
+    setLoading(true);
+    try {
+      const { data } = await apiService.login(userData);
+      localStorage.setItem('token', data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+      setUser(data.user);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error; // Let the caller handle the error
+    } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
-  const fetchUser = async () => {
+  const register = async (userData) => {
+    setLoading(true);
     try {
-      const res = await axios.get('/api/users/profile');
-      setUser(res.data);
+      const { data } = await apiService.register(userData);
+      localStorage.setItem('token', data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+      setUser(data.user);
     } catch (error) {
-      console.error('Error fetching user:', error);
+      console.error('Registration error:', error);
+      throw error;
     } finally {
       setLoading(false);
     }
