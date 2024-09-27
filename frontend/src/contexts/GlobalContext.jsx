@@ -14,6 +14,8 @@ export const GlobalProvider = ({ children }) => {
     onError: (error) => console.error('Error fetching quizzes:', error),
   });
 
+
+
   // Create Quiz Mutation
   const createQuizMutation = useMutation({
     mutationFn: apiService.createQuiz,
@@ -50,7 +52,11 @@ export const GlobalProvider = ({ children }) => {
     onError: (error) => console.error('Error submitting quiz:', error),
   });
 
-  const submitQuiz = (submissionData) => submitQuizMutation.mutate(submissionData);
+  const submitQuiz = async (submissionData) => {
+    const result = await submitQuizMutation.mutateAsync(submissionData);
+    return result.data;
+  };
+  
 
   return (
     <GlobalContext.Provider
@@ -70,3 +76,11 @@ export const GlobalProvider = ({ children }) => {
 };
 
 export const useGlobal = () => useContext(GlobalContext);
+export const useFetchQuizById = (quizId) => {
+  return useQuery({
+    queryKey: ['quizId', quizId],
+    queryFn: () => apiService.getQuizById(quizId),
+    onError: (error) => console.error('Error fetching quiz:', error),
+    enabled: !!quizId,
+  });
+};

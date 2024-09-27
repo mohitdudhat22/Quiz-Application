@@ -25,8 +25,8 @@ const apiService = {
 
   // Quizzes
   createQuiz: (quizData) => api.post('/api/quizzes', quizData),
-  getQuizzes: (page = 1, limit = 10) => api.get(`/api/quizzes?page=${page}&limit=${limit}`),
-  getQuizById: (quizId) => api.get(`/api/quizzes/${quizId}`),
+  getQuizzes: (page = 1, limit = 10) => api.get(`/api/quizzes?page=${page}&limit=${limit}`).then((res) => res.data.docs),
+  getQuizById: (quizId) => api.get(`/api/quizzes/${quizId}`).then((res) => res.data),
   updateQuiz: (quizId, quizData) => api.put(`/api/quizzes/${quizId}`, quizData),
   deleteQuiz: (quizId) => api.delete(`/api/quizzes/${quizId}`),
   submitQuiz: (submissionData) => api.post('/api/quizzes/submit', submissionData),
