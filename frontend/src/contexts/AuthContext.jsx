@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', data.token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
       setUser(data.user);
+      return true;
     } catch (error) {
       console.error('Login error:', error);
       throw error; // Let the caller handle the error

@@ -40,29 +40,35 @@ function QuizDetails() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-gray-50 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold mb-4">{quiz.title}</h1>
-      <p className="text-gray-700 mb-6">{quiz.description}</p>
-      <div className="flex space-x-4 mt-4">
-        <button
-          onClick={handleUpdate}
-          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-200"
-        >
-          Update Quiz
-        </button>
-        <button
-          onClick={handleDelete}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
-        >
-          Delete Quiz
-        </button>
+    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white shadow-2xl rounded-3xl overflow-hidden">
+        <div className="px-8 py-12 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+          <h1 className="text-4xl font-extrabold text-white mb-4">{quiz.title}</h1>
+          <p className="text-white text-opacity-90 text-lg leading-relaxed">{quiz.description}</p>
+        </div>
+        <div className="p-8">
+          <div className="flex flex-wrap gap-4 mb-8">
+            <button
+              onClick={handleUpdate}
+              className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-3 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-md hover:shadow-lg font-semibold"
+            >
+              Update Quiz
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-gradient-to-r from-red-400 to-red-600 text-white px-6 py-3 rounded-lg hover:from-red-500 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg font-semibold"
+            >
+              Delete Quiz
+            </button>
+          </div>
+          <Link
+            to={`/take/${id}`}
+            className="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 shadow-md hover:shadow-lg font-semibold text-lg"
+          >
+            Take This Quiz
+          </Link>
+        </div>
       </div>
-      <Link
-        to={`/take/${id}`}
-        className="inline-block mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-200"
-      >
-        Take This Quiz
-      </Link>
     </div>
   );
 }
