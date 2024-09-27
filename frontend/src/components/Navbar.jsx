@@ -9,7 +9,9 @@ function Navbar() {
           <Link to="/" className="text-2xl font-bold">Quiz App</Link>
           <div>
             <Link to="/" className="mr-4 hover:text-blue-200">Home</Link>
-            <Link to="/create" className="hover:text-blue-200">Create Quiz</Link>
+            <Link to="/create" className="mr-4 hover:text-blue-200">Create Quiz</Link>
+            <Link to="/login" className="mr-4 hover:text-blue-200">Login</Link>
+            <Link to="/register" className="hover:text-blue-200">Register</Link>
           </div>
         </div>
       </div>
