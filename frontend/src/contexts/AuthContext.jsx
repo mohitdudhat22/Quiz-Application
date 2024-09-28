@@ -5,7 +5,7 @@ import apiService from '../services/api';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null || localStorage.getItem('user'));
+  const [user, setUser] = useState(null || JSON.parse(localStorage.getItem('user')));
   const [loading, setLoading] = useState(true);
 
   const login = async (userData) => {

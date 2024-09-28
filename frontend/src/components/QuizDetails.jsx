@@ -1,12 +1,13 @@
-import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useGlobal } from '../contexts/GlobalContext';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
 function QuizDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { quizzes, quizzesLoading, quizzesError, deleteQuiz, updateQuiz, user } = useGlobal();
+  const { user } = useAuth();
+  const { quizzes, quizzesLoading, quizzesError, deleteQuiz } = useGlobal();
 
   // Handle loading state
   if (quizzesLoading) return <div className="text-center">Loading quizzes...</div>;
@@ -22,6 +23,11 @@ function QuizDetails() {
 
   // Function to handle delete action
   const handleDelete = async () => {
+    if(user.role != 'admin'){
+      toast.error('You are not authorized to perform this action!');
+      navigate('/');
+      return;
+    }
     const confirmDelete = window.confirm('Are you sure you want to delete this quiz?');
     if (confirmDelete) {
       try {
@@ -37,6 +43,11 @@ function QuizDetails() {
 
   // Function to handle update action (you can redirect to an update form or modal)
   const handleUpdate = () => {
+    if(user.role != 'admin'){
+      toast.error('You are not authorized to perform this action!');
+      navigate('/');
+      return;
+    }
     navigate(`/create/${quiz._id}`); // Assuming there's an edit route for the quiz
   };
   // Animation variants

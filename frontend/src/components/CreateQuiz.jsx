@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuizById, useGlobal } from '../contexts/GlobalContext';
 import { motion } from "framer-motion";
+import { useAuth } from '../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 function CreateQuiz() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { user } = useAuth();
   const { createQuiz, updateQuiz } = useGlobal();
   const [quiz, setQuiz] = useState({
     title: '',
@@ -46,6 +49,11 @@ function CreateQuiz() {
   };
 
   const handleSubmit = async (e) => {
+    if(user.role != 'admin'){
+      toast.error('You are not authorized to perform this action!');
+      navigate('/');
+      return;
+    }
     e.preventDefault();
     if (id) {
       await updateQuiz(id, quiz);
