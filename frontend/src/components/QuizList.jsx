@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobal } from '../contexts/GlobalContext';
 import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
 function QuizList() {
   const { quizzes, quizzesLoading, quizzesError, deleteQuiz } = useGlobal();
-
+  const {user} = useAuth();
+  console.log(user)
   if (quizzesLoading) return <div className="text-center">Loading quizzes...</div>;
   if (quizzesError) return <div className="text-center text-red-500">Error loading quizzes.</div>;
   const containerVariants = {

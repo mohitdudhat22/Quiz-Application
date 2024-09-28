@@ -23,7 +23,7 @@ function App() {
               <Route path="/quiz/:id" element={<QuizDetails />} />
               <Route path="/take/:id" element={<TakeQuiz />} />
 
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
           </div>
         </div>

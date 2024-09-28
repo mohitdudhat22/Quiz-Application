@@ -32,7 +32,7 @@ app.use(morgan('dev'));
 app.use(compression());
 
 app.use('/api/auth', authRoutes);
-app.use('/api/',authMiddleware ,quizRoutes);
+app.use('/api/',authMiddleware, quizRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 export default app;

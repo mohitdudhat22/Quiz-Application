@@ -5,16 +5,17 @@ import apiService from '../services/api';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null || localStorage.getItem('user'));
   const [loading, setLoading] = useState(true);
 
   const login = async (userData) => {
     setLoading(true);
     try {
-      const { data } = await apiService.login(userData);
-      localStorage.setItem('token', data.token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      setUser(data.user);
+      const response = await apiService.login(userData);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+      setUser(response.data.user);
       return true;
     } catch (error) {
       console.error('Login error:', error);

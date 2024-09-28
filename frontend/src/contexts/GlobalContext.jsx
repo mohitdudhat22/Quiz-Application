@@ -20,7 +20,7 @@ export const GlobalProvider = ({ children }) => {
   const createQuizMutation = useMutation({
     mutationFn: apiService.createQuiz,
     onSuccess: (newQuiz) => {
-      queryClient.setQueryData(['quizzes'], (oldQuizzes) => [...oldQuizzes, newQuiz]);
+      queryClient.invalidateQueries(['quizzes']); 
     },
     onError: (error) => console.error('Error creating quiz:', error),
   });

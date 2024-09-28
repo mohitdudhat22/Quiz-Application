@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 function QuizDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { quizzes, quizzesLoading, quizzesError, deleteQuiz, updateQuiz } = useGlobal();
+  const { quizzes, quizzesLoading, quizzesError, deleteQuiz, updateQuiz, user } = useGlobal();
 
   // Handle loading state
   if (quizzesLoading) return <div className="text-center">Loading quizzes...</div>;
@@ -27,9 +27,10 @@ function QuizDetails() {
       try {
         await deleteQuiz(quiz._id);
         toast.success('Quiz deleted successfully!');
-        navigate('/quizzes'); // Redirect to quizzes list after deletion
+        navigate('/'); // Redirect to quizzes list after deletion
       } catch (error) {
         toast.error('Error deleting quiz. Please try again.');
+        console.log(error)
       }
     }
   };

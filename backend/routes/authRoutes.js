@@ -103,8 +103,8 @@ router.post('/login', [
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     
-    const token = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-    res.json({ token });
+    const token = jwt.sign({ userId: user._id, role: user.role, email: user.email, username: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+    res.json({ token, user });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
