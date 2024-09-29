@@ -1,114 +1,126 @@
-# MERN Starter Template
+<div>
+  <h1>Quiz App</h1>
 
-This is a scalable and well-structured MERN stack starter template that includes essential features for web application development, such as user authentication, role-based access, and a clean code organization.
+  <p>
+    This is a scalable and well-structured quiz app built with the MERN stack, featuring essential functionalities for creating, managing, and participating in quizzes.
+  </p>
 
-## Features
+  <h2>Features</h2>
+  <ul>
+    <li>User Authentication (Registration and Login)</li>
+    <li>Role-Based Access Control (Admin and User roles)</li>
+    <li>JWT Authentication</li>
+    <li>Input Validation</li>
+    <li>Centralized Error Handling</li>
+    <li>API Documentation with Swagger</li>
+    <li>Frontend with React and Vite</li>
+    <li>State Management with Context API</li>
+    <li>Protected Routes and Role-Based UI</li>
+    <li>API Integration with Axios</li>
+    <li>Styling with Tailwind CSS</li>
+    <li>Testing with Jest and React Testing Library</li>
+    <li>Deployment to Heroku and Vercel</li>
+    <li>CI/CD with GitHub Actions</li>
+  </ul>
 
-- User Authentication (Registration and Login)
-- Role-Based Access Control (Admin and User roles)
-- JWT Authentication
-- Input Validation
-- Centralized Error Handling
-- API Documentation with Swagger
-- Frontend with React and Vite
-- State Management with Context API
-- Protected Routes and Role-Based UI
-- API Integration with Axios
-- Styling with Tailwind CSS
-- Testing with Jest and React Testing Library
-- Deployment to Heroku and Vercel
-- CI/CD with GitHub Actions
+  <h2>Project Structure</h2>
 
-## Project Structure
+  <h3>Backend</h3>
+  <p>
+    The backend is built using Node.js, Express, and MongoDB, following a modular approach with separate routes, controllers, and services.
+  </p>
 
-### Backend
+  <h4>Directory Structure</h4>
+  <pre>
+    backend/
+      config/: Configuration files
+      controllers/: Route handlers
+      models/: MongoDB models for quizzes, questions, and users
+      routes/: API routes for quizzes and users
+      services/: Business logic related to quiz functionalities
+      utils/: Helper functions
+      index.js: Entry point
+      package.json: Dependencies and scripts
+  </pre>
 
-The backend is built using Node.js, Express, and MongoDB. It follows a modular approach with separate routes, controllers, and services.
+  <h4>Configuration</h4>
+  <pre>
+    config/dbConnect.js: Connects to MongoDB
+    config/constants.js: Stores constants like database name and JWT secret
+  </pre>
 
-#### Directory Structure
+  <h3>Frontend</h3>
+  <p>
+    The frontend is built using React and Vite, utilizing the Context API for state management and Axios for API requests.
+  </p>
 
-- `backend/`:
-  - `config/`: Configuration files
-  - `controllers/`: Route handlers
-  - `models/`: MongoDB models
-  - `routes/`: API routes
-  - `services/`: Business logic
-  - `utils/`: Helper functions
-  - `index.js`: Entry point
-  - `package.json`: Dependencies and scripts
+  <h4>Directory Structure</h4>
+  <pre>
+    frontend/
+      public/: Static assets
+      src/
+        components/: Reusable UI components (Quiz, Question, etc.)
+        context/: Context API for managing quiz state
+        pages/: Page components (Home, Quiz, Results, etc.)
+        App.js: Main application component
+        index.js: Entry point
+        package.json: Dependencies and scripts
+  </pre>
 
-#### Configuration
+  <h4>Configuration</h4>
+  <pre>
+    frontend/vite.config.js: Vite configuration
+    frontend/public/index.html: HTML template
+  </pre>
 
-- `config/dbConnect.js`: Connects to MongoDB
-- `config/constants.js`: Stores constants like database name
+  <h2>Deployment</h2>
 
-### Frontend
+  <h3>Backend</h3>
+  <p>
+    Deployed on Heroku
+    <br />
+    Repository: <a href="https://github.com/your-username/backend-repo">Backend</a>
+  </p>
 
-The frontend is built using React and Vite. It uses the Context API for state management and Axios for API requests.
+  <h3>Frontend</h3>
+  <p>
+    Deployed on Vercel
+    <br />
+    Repository: <a href="https://github.com/your-username/frontend-repo">Frontend</a>
+  </p>
 
-#### Directory Structure
+  <h2>CI/CD</h2>
+  <p>CI/CD with GitHub Actions</p>
 
-- `frontend/`:
-  - `public/`: Static assets
-  - `src/`:
-    - `components/`: Reusable UI components
-    - `context/`: Context API
-    - `pages/`: Page components
-    - `App.js`: Main application component
-    - `index.js`: Entry point
-    - `package.json`: Dependencies and scripts
+  <h2>Getting Started</h2>
 
-#### Configuration
+  <h3>Backend</h3>
+  <ol>
+    <li>Install dependencies:
+      <pre>cd backend
+npm install</pre>
+    </li>
+    <li>Start the server:
+      <pre>npm start</pre>
+    </li>
+  </ol>
 
-- `frontend/vite.config.js`: Vite configuration
-- `frontend/public/index.html`: HTML template
+  <h3>Frontend</h3>
+  <ol>
+    <li>Install dependencies:
+      <pre>cd frontend
+npm install</pre>
+    </li>
+    <li>Start the development server:
+      <pre>npm run dev</pre>
+    </li>
+  </ol>
 
-### Deployment
+  <h2>Contributing</h2>
+  <p>
+    We welcome contributions to this project! Please read our <a href="CONTRIBUTING.md">contributing guidelines</a> for more details.
+  </p>
 
-#### Backend
-
-- Deployed on Heroku
-- Repository: [Backend](https://github.com/your-username/backend-repo)
-
-#### Frontend
-
-- Deployed on Vercel
-- Repository: [Frontend](https://github.com/your-username/frontend-repo)
-
-### CI/CD
-
-- CI/CD with GitHub Actions
-
-## Getting Started
-
-### Backend
-
-1. Install dependencies:
-   ```bash
-   cd backend
-   npm install
-   ```
-2. Start the server:
-   ```bash
-   npm start
-   ```
-
-### Frontend
-
-1. Install dependencies:
-   ```bash
-   cd frontend
-   npm install
-   ```
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-## Contributing
-
-We welcome contributions to this project! Please read our [contributing guidelines](CONTRIBUTING.md) for more details.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+  <h2>License</h2>
+  <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
+</div>
